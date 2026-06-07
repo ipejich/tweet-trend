@@ -14,5 +14,15 @@ pipeline {
             }
 
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Docker uzima JAR iz istog direktorija i radi sliku lokalno
+                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    
+                    echo "Docker image je uspješno kreiran lokalno na Jenkins poslužitelju!"
+                }
+            }
+        }
     }
 }
